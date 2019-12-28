@@ -8,43 +8,56 @@ public class BinaryPrinter {
 	//Create a main method to test your methods.
 	
 	public void printByteBinary(byte b) {
-		System.out.println(b>>0);
-		String counter ="";
-		//need a way to figure out how to change 0x00000001 thing!!! -- may be able to divide by ten or something
-		for (int i = 8; i > 0; i--) {
-			if((0x00000001 & b)>>i==1) {
-				counter += (1 + "");
-			}
-		}
-		System.out.println(counter);
+//		String counter ="";
+		System.out.print((0b10000000&b)>>7);
+		System.out.print((0b01000000&b)>>6);
+		System.out.print((0b00100000&b)>>5);
+		System.out.print((0b00010000&b)>>4);
+		System.out.print((0b00001000&b)>>3);
+		System.out.print((0b00000100&b)>>2);
+		System.out.print((0b00000010&b)>>1);
+		System.out.print((0b00000001&b)>>0);
+//		if((0x00000001 & b)>>0==1) {
+//				counter += (1 + "");
+//			}else if((0x00000010 & b))
+//		System.out.println(counter);
 		
 	}
 	
-	public void printShortBinary(short s) {
-		//16 bit
-//		int sign = Integer.signum(s);
-//		if (sign==1) {
-//			for (int i = 0; i < 15; i++) {
-//				if(temp<) {
-//					
-//				}
-//			}
-//		}
+	public void printShortBinary(short b) {
+	//16bit
+//		BinaryPrinter temp = new BinaryPrinter();
+		printByteBinary((byte)(b>>8));
+		printByteBinary((byte)(b>>0));
 	}
 	
-	public void printIntBinary(int i) {
-		
+	public void printIntBinary(int b) {
+		//32 bit
+		printShortBinary((short)(b>>16));
+		printShortBinary((short)(b>>0));
 	}
 	
 	public void printLongBinary(long l) {
-		
+		//64
+		printIntBinary((int)(l>>32));
+		printIntBinary((int)(l>>0));
 	}
 	
 	
 	public static void main(String[] args) {
-		BinaryPrinter printer = new BinaryPrinter();
+		BinaryPrinter printer;
+		printer = new BinaryPrinter();
 		byte s = 122;
+		short b = 19283;
+		int i = 1249012345;
+		long l = 18828349;
 		printer.printByteBinary(s);
+		System.out.println("");
+		printer.printShortBinary(b);
+		System.out.println("");
+		printer.printIntBinary(i);
+		System.out.println("");
+		printer.printLongBinary(l);
 	}
 	
 	
