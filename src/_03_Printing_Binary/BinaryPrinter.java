@@ -47,7 +47,7 @@ public class BinaryPrinter {
 	public static void main(String[] args) {
 		BinaryPrinter printer;
 		printer = new BinaryPrinter();
-		byte s = 122;
+		byte s = 127;
 		short b = 19283;
 		int i = 1249012345;
 		long l = 18828349;
