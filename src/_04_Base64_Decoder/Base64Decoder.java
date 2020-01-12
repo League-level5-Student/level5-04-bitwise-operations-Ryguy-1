@@ -61,44 +61,67 @@ public class Base64Decoder {
 	//   and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
 			byte[] bytes = new byte[file.length()*3/4];
-			char[] arrayC = file.toCharArray();
 			int counter = 0;
 			String temp = "";
-			for (int i = 0; i < arrayC.length; i+=4) {
-				byte[] b1 = convertBase64Char(arrayC.substring(i, i+4));
-//				for (int j = i; j < i+4; j++) {
-//					temp+=arrayC[j];
-//				}
-//				byte[] b1 = convert4CharsTo24Bits(temp);
-//				temp = "";
-				for (int j = counter; j < b1.length; j++) {
-					bytes[j] = b1[j];
+			for (int i = 0; i < file.length(); i+=4) {
+				byte[] b1 = convert4CharsTo24Bits(file.substring(i, i+4));
+				for (int j = 0; j < 3; j++) {
+					bytes[counter+j] = b1[j];
+					
 				}
+				counter+=3;
 			}
 		return bytes;
 	}
 	
-	public byte decimalToByte(byte b) {
-		byte counter = 0;
-		if((0b10000000&b)>>7==1){
-			counter+=128;
-		}else if ((0b01000000&b)>>6==1) {
-			counter+=64;
-		}else if ((0b00100000&b)>>5==1) {
-			counter+=32;
-		}else if ((0b00010000&b)>>4==1) {
-			counter+=16;
-		}else if ((0b00001000&b)>>3==1) {
-			counter+=8;
-		}else if ((0b00000100&b)>>2==1) {
-			counter+=4;
-		}else if ((0b00000010&b)>>1==1) {
-			counter+=2;
-		}else if ((0b00000001&b)>>0==1) {
-			counter+=1;
-		}
-		return counter;
-		
-	}
+	
+	
+	
+	
+//	char[] chars = file.toCharArray();
+//	for (int i = 0; i < bytes.length; i+=3) {
+//		bytes[i] = (byte)((convertBase64Char(chars[i])<<2)+(convertBase64Char(chars[i+1])>>4));
+//		bytes[i+1] = (byte)((convertBase64Char(chars[i+1])<<4)+(convertBase64Char(chars[i+2])>>2));
+//		bytes[i+2] = (byte)((convertBase64Char(chars[i+2])<<6)+(convertBase64Char(chars[i+3])>>0));
+//	}
+	//char[] arrayC = file.toCharArray();
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+//	for (int j = i; j < i+4; j++) {
+//	temp+=arrayC[j];
+//}
+//byte[] b1 = convert4CharsTo24Bits(temp);
+//temp = "";
+	
+//	public byte decimalToByte(byte b) {
+//		byte counter = 0;
+//		if((0b10000000&b)>>7==1){
+//			counter+=128;
+//		}else if ((0b01000000&b)>>6==1) {
+//			counter+=64;
+//		}else if ((0b00100000&b)>>5==1) {
+//			counter+=32;
+//		}else if ((0b00010000&b)>>4==1) {
+//			counter+=16;
+//		}else if ((0b00001000&b)>>3==1) {
+//			counter+=8;
+//		}else if ((0b00000100&b)>>2==1) {
+//			counter+=4;
+//		}else if ((0b00000010&b)>>1==1) {
+//			counter+=2;
+//		}else if ((0b00000001&b)>>0==1) {
+//			counter+=1;
+//		}
+//		return counter;
+//		
+//	}
 	
 }
